@@ -5,6 +5,7 @@ import SmallVideos from "../components/SmallVideos";
 import Popup from "../components/Popup ";
 import AdminNavBar from "../components/AdminNavbar";
 import axios from "axios";
+import Deletepopup from "../components/Deletepopup";
 export default function Admin() {
   const { videoSrc } = useContext(Storage);
   const { log, setlog } = useContext(Storage);
@@ -13,13 +14,14 @@ export default function Admin() {
   const window = "flex justify-center items-center border border-gray-800 p-6 rounded-lg w-40 h-14"
   const [isOpen, setIsOpen] = useState(false);
   const [popupvideo, setpopupvideo] = useState();
-
+  const [deletevideoID,setdeletevideoID] = useState()
   const [popupemotion, setpopupemotion] = useState();
   const [status, setStatus] = useState("");
   const [toEdit, setToEdit] = useState(`${window} invisible`)
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+  const [showdeletePopUp, setShowdeletePopUp] = useState(false);
 
   function updatestatus(videoId, status) {
     axios
@@ -34,6 +36,10 @@ export default function Admin() {
       setlog(true)
       localStorage.setItem("adpas", "0987")
     }
+  }
+  function ConfirmDelete(videoID) {
+    setdeletevideoID(videoID)
+    setShowdeletePopUp(true)
   }
   return (
     <div className="w-full h-screen">
@@ -167,8 +173,10 @@ export default function Admin() {
 
                     </td>
 
-                    <td className="border border-gray-500 px-4 py-2">
+                    <td className="border border-gray-500  px-4 py-2 ">
                       {item?.inappropriate}
+                      <br/>
+                      <button className="bg-red-600 p-2 mt-4" onClick={()=>ConfirmDelete(item._id)}>Delete</button>
                     </td>
 
                   </tr>
@@ -176,7 +184,11 @@ export default function Admin() {
               })}
             </tbody>
           </table>
-
+                <div>
+                {showdeletePopUp && (
+              <Deletepopup setShowdeletePopUp={setShowdeletePopUp} videoId ={deletevideoID}></Deletepopup>
+            )}
+                </div>
           <div>
             {isOpen && (
               <Popup content={<SmallVideos
@@ -186,6 +198,7 @@ export default function Admin() {
                 emotion={popupemotion}
                 title="My Popup" />
             )}
+            
           </div> </div>)
 
       }

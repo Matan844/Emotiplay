@@ -75,3 +75,18 @@ module.exports.changeStatus = async (req, res) => {
     }))
 }
 
+ 
+module.exports.deleteVideo = async (req, res) => {
+  const videoId =  req.body.id;
+  try {
+    const deletedVideo = await Video.findByIdAndDelete(videoId);
+    console.log(videoId);
+    if (!deletedVideo) {
+      return res.status(404).json({ message: 'Video not found' });
+    }
+    return res.status(200).json({ message: 'Video deleted successfully' });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+}
