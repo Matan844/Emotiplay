@@ -1,6 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import { Routes, Route } from 'react-router-dom';
 import Context from './Context';
 import Donor from "./pages/Donor";
@@ -40,16 +38,16 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<ContactUs />}></Route>
-        <Route path="/enter" element={verifyId == localStorage.getItem('id') ? < Enter /> : <Nonlogin />}></Route>
-        <Route path="/donor" element={verifyId == localStorage.getItem('id') ?<Donor /> : <Nonlogin />}></Route>
-        <Route path="/preview" element={verifyId == localStorage.getItem('id') ?<Preview />: <Nonlogin /> }></Route>
-        <Route path="/checker/:index" element={verifyId == localStorage.getItem('id') ?<Checker /> : <Nonlogin />}></Route>
-        <Route path="/admin" element={verifyId == localStorage.getItem('id') ?<Admin />: <Nonlogin /> }></Route>
-        <Route path="/EmotionControl" element={verifyId == localStorage.getItem('id') ?<EmotionControl /> : <Nonlogin />}></Route>
-        <Route path="/EmotionEditor" element={verifyId == localStorage.getItem('id') ?<EmotionEditor /> : <Nonlogin />}></Route>
-        <Route path="/statistics" element={verifyId == localStorage.getItem('id') ?<Statistics /> : <Nonlogin />}></Route>
-        <Route path="/thankyou" element={verifyId == localStorage.getItem('id') ?<Thankyou /> : <Nonlogin />}></Route>
-        <Route path="/emotionlist" element={verifyId == localStorage.getItem('id') ?<Emotionlist />: <Nonlogin /> }></Route>
+        <Route path="/enter" element={verifyId == localStorage.getItem('id') ? < Enter /> : <Enter />}></Route>
+        <Route path="/donor" element={verifyId == localStorage.getItem('id') ?<Donor /> : <Donor />}></Route>
+        <Route path="/preview" element={verifyId == localStorage.getItem('id') ?<Preview />: <Preview /> }></Route>
+        <Route path="/checker/:index" element={verifyId == localStorage.getItem('id') ?<Checker /> : <Checker />}></Route>
+        <Route path="/admin" element={verifyId == localStorage.getItem('id') ?<Admin />: <Admin /> }></Route>
+        <Route path="/EmotionControl" element={verifyId == localStorage.getItem('id') ?<EmotionControl /> : <EmotionControl />}></Route>
+        <Route path="/EmotionEditor" element={verifyId == localStorage.getItem('id') ?<EmotionEditor /> : <EmotionEditor />}></Route>
+        <Route path="/statistics" element={verifyId == localStorage.getItem('id') ?<Statistics /> : <Statistics />}></Route>
+        <Route path="/thankyou" element={verifyId == localStorage.getItem('id') ?<Thankyou /> : <Thankyou />}></Route>
+        <Route path="/emotionlist" element={verifyId == localStorage.getItem('id') ?<Emotionlist />: <Emotionlist /> }></Route>
       </Routes>
     </Storage.Provider >
   );

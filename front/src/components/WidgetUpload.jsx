@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import { Storage } from "../App"
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 
 const WidgetUpload = (props) => {

@@ -13,10 +13,10 @@ const { createSpectrum,
 router.get("/allEmotions", getAll);
 router.post("/createSpectrum", createSpectrum);
 router.post("/addEmotion/:spectrumId", addEmotion);
-router.post("/deleteSpectrum/:spectrumId", deleteSpectrum);
+router.delete("/deleteSpectrum/:spectrumId", deleteSpectrum);
 router.post("/deleteEmotion/", deleteEmotion);
-router.post("/updateSpectrum/:spectrumId", updateSpectrum);
-router.post("/updateEmotion", updateEmotion);
+router.put("/updateSpectrum/:spectrumId", updateSpectrum);
+router.put("/updateEmotion", updateEmotion);
 router.post('/changeNeed/:spectrumId', changeNeed)
 
 module.exports = router;
