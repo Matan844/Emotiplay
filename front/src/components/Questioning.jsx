@@ -201,6 +201,7 @@ if (clicked2[0] == false && clicked2[1] == false && clicked2[2] == false && clic
 
         <div className="emotion px-2 flex flex-row justify-center">
           {myOrder.map((index, none) => (<button onClick={() => { validSave(answeroption[index]); handleClick2(index) }}
+            key={none}
             className={clicked2[index]
               ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2 text-base p-2"
               : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded m-2 text-base p-2"}>

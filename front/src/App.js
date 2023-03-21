@@ -33,6 +33,7 @@ function App() {
   useEffect(() => {
     const email = localStorage.getItem('email')
     verified(email)
+    
   }, [])
 
   return (

@@ -4,9 +4,40 @@ import Lottie from "lottie-react";
 import { useContext, useEffect, useRef, useState } from "react"
 import { Storage } from "../App"
 import { color } from '@cloudinary/url-gen/qualifiers/background';
+import axios from 'axios';
 
 
 const Enter = () => {
+    
+    const { setfilterdVideo } = useContext(Storage)
+    
+   
+    //   const [videos , setvideos] = useState()
+    let videos = [{}]
+    useEffect(() => {
+        axios.get('http://localhost:8639/video/allVideos')
+        .then((res)=> { videos = res.data} )
+        .then(()=>{
+            
+            console.log(videos);
+
+        const userid = localStorage.getItem('id');
+        axios.post('http://localhost:8639/user/getallviedvideos', { userId: userid })
+          .then((response) => { 
+            const viewdvideo = response.data.message;
+            console.log('viewed videos:', viewdvideo);
+            console.log('video sources:', videos);
+            const filtered = videos.filter(obj => !viewdvideo.includes(obj._id));
+            console.log('filtered videos:', filtered);
+            setfilterdVideo(filtered);
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });})
+      }, [])
+      
+      
+
     const { setCloudinaryLink } = useContext(Storage)
     const cloudinaryRef = useRef()
     const widgetRef = useRef()

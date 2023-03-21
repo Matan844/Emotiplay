@@ -15,6 +15,7 @@ export default function Context() {
     const [emotion, setEmotion] = useState();
     const [correct, setCorrect] = useState();
     const [wrong, setWrong] = useState();
+    const [filterdVideo, setfilterdVideo] = useState();
     const { pathname } = useLocation();
 
     useEffect(() => {
@@ -24,7 +25,7 @@ export default function Context() {
                 let id;
                 try {
                     const { data: videos } = await axios.get('http://localhost:8639/video/allVideos')
-                    setVideoSrc(videos)
+                    setVideoSrc(videos)                   
                     if (pathname.split('/')[2] >= 0) {
                         const correctAnswer = videos[pathname.split('/')[2]].feeling.emotion
                         id = videos[pathname.split('/')[2]].feeling.spectrum
@@ -34,6 +35,7 @@ export default function Context() {
                 } catch (err) {
                     console.log("failed to fetch videos : ", err.message)
                 }
+                
 
                 try {
                     const { data: emotions } = await axios.get('http://localhost:8639/emotion/allEmotions')
@@ -77,7 +79,7 @@ export default function Context() {
     }
     const [log, setlog] = useState(false);
     const [pass, setpass] = useState(false);
-
+    const [watched,setWatched] = useState([])
     return {
         cloudinaryLink, setCloudinaryLink,
         emotion, setEmotion,
@@ -89,6 +91,8 @@ export default function Context() {
         wrong, setWrong,
         allEmotions, setAllEmotions,
         log, setlog,
-        pass, setpass
+        pass, setpass,
+        watched,setWatched,
+        filterdVideo, setfilterdVideo
     }
 }

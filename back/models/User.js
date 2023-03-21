@@ -9,6 +9,9 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    watchedVideos : [
+
+    ] ,
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Review'
@@ -16,7 +19,12 @@ const UserSchema = new mongoose.Schema({
     videos: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Video'
-    }]
+    }],
+    watchedVideos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Video',
+        unique: true
+      }]
 });
 
 module.exports = mongoose.model('User', UserSchema)

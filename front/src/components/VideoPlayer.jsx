@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 
 const VideoPlayer = (props) => {
     const params = useParams();
-    const { videoSrc } = useContext(Storage)
+    const { filterdVideo } = useContext(Storage)
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);
 
@@ -16,11 +16,11 @@ const VideoPlayer = (props) => {
         setProgress(progress);
     };
 
-
+console.log(filterdVideo);
     return (
         <div className='d-flex justify-content-center flex-column align-items-center pt-1'>
             {
-                videoSrc[counter]?.cloudinaryLink &&
+                filterdVideo[counter]?.cloudinaryLink &&
                 <video
                     className='d-flex justify-content-center flex-column align-items-center p-1'
                     onTimeUpdate={handleProgress}
@@ -32,7 +32,7 @@ const VideoPlayer = (props) => {
                     muted
                 >
                     <source
-                        src={videoSrc[counter]?.cloudinaryLink}
+                        src={filterdVideo[counter]?.cloudinaryLink}
                         type="video/mp4"
                     />
                 </video>
