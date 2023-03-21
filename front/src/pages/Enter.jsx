@@ -4,9 +4,34 @@ import Lottie from "lottie-react";
 import { useContext, useEffect, useRef, useState } from "react"
 import { Storage } from "../App"
 import { color } from '@cloudinary/url-gen/qualifiers/background';
+import axios from 'axios';
 
 
 const Enter = () => {
+    const {FilterdVideos , setFilterdVideos} = useContext(Storage)
+    let videos = [{}]
+    useEffect(()=>{
+        axios.get('http://localhost:8639/video/allVideos')
+        .then((res)=> { videos = res.data} )
+        .then(()=>{
+            console.log(videos);
+        const userid = localStorage.getItem('id');
+        axios.post('http://localhost:8639/user/getallviedvideos', { userId: userid })
+          .then((response) => { 
+            const viewdvideo = response.data.message;
+            console.log('viewed videos:', viewdvideo);
+            console.log('video sources:', videos);
+            const filtered = videos.filter(obj => !viewdvideo.includes(obj._id));
+            console.log('filtered videos:', filtered);
+             localStorage.setItem('filtered',JSON.stringify(filtered));
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          });})
+    },[])
+
+
+
     const { setCloudinaryLink } = useContext(Storage)
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
@@ -42,7 +67,7 @@ const Enter = () => {
 
                 <div className=' flex justify-center mt-3'>
                     <button className="bg-blue-500 p-3 hover:bg-blue-700 text-white font-bold px-5 rounded-full flex justify-end">
-                        <NavLink to={"/checker/0"} className='caret-lime-900'>
+                        <NavLink to={"/checker/0"} className='caret-lime-900' >
                             Evaluator
                         </NavLink>
                     </button>

@@ -16,7 +16,12 @@ const UserSchema = new mongoose.Schema({
     videos: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Video'
-    }]
+    }],
+    watchedVideos: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Video',
+        unique: true
+      }]
 });
 
 module.exports = mongoose.model('User', UserSchema)

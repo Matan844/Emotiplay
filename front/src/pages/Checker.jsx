@@ -21,13 +21,21 @@ export default function Checker() {
       console.log(order);
     }, []);
     function finishingFunc() {
+        const videoId = videoSrc[counter]._id;
+        saveWatchedVideo(videoId);
         handleRating()
         setCounter(counter + 1)
         const order = [0,1,2,3].sort(() => Math.random() - 0.5);
         setMyOrder(order);
         console.log(order);
     }
-    
+    const saveWatchedVideo = (videoId) => {
+        const userId = localStorage.getItem("id");
+        axios
+          .post("http://localhost:8639/user/watchedVideoSave", { userId: userId , videoId: videoId})
+          .then((response) => console.log(response));}
+
+
     const handleRating = () => {
         localStorage.getItem("inappropriate") && inappropriate();
         localStorage.getItem("quality") && localStorage.getItem("option") &&
@@ -35,7 +43,10 @@ export default function Checker() {
                 scale: parseInt(localStorage.getItem("quality")),
                 option: localStorage.getItem("option")
             });
-        localStorage.clear()
+            localStorage.removeItem("wrongAnswer");
+            localStorage.removeItem("firstRandom");
+            localStorage.removeItem("secondRandom");
+            localStorage.removeItem("correctAnswer");
     }
 
     const review = (body) => {
@@ -56,7 +67,10 @@ export default function Checker() {
         <div className='w-full h-full flex flex-row justify-center bg--50 mt-10'>
             <div className='w-1/6 flex justify-center items-center'>
                 <button  className=' bg-orange-600 rounded p-3 text-white text-xl'
-                    onClick={() => { navigate('/enter'); localStorage.clear() }} >
+                    onClick={() => { navigate('/enter');     localStorage.removeItem("wrongAnswer");
+                    localStorage.removeItem("firstRandom");
+                    localStorage.removeItem("secondRandom");
+                    localStorage.removeItem("correctAnswer"); }} >
                     EXIT
                 </button>
             </div>
