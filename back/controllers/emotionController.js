@@ -54,11 +54,13 @@ module.exports.deleteSpectrum = (req, res) => {
   Emotion.findByIdAndDelete(req.params.spectrumId)
     .then((response) => {
       if (!response) {
-        res.status(404).json({ message: "spectrum not found" });
+        res.status(404).json({
+          message: "spectrum not found"
+        });
       } else {
-        res
-          .status(200)
-          .json({ message: "spectrum deleted successfully", response });
+        res.status(200).json({
+          message: "spectrum deleted successfully", response
+        });
       }
     })
     .catch((err) => {
@@ -71,7 +73,7 @@ module.exports.deleteEmotion = async (req, res) => {
   try {
     const { spectrumId, emotionId, emotionTitle } = req.body
     const emotion = await Emotion.findOneAndUpdate({ _id: spectrumId },
-      { $pull: { stock: { _id: emotionId , title:emotionTitle} } }, { new: true })
+      { $pull: { stock: { _id: emotionId, title: emotionTitle } } }, { new: true })
     if (!emotion) {
       res.status(404).json({ message: "spectrum isn't found" });
     } else res.status(200).json({
@@ -84,33 +86,15 @@ module.exports.deleteEmotion = async (req, res) => {
       error
     })
   }
-  // .then((response) => {
-  //   if (!response) {
-  //     res.status(404).json({ message: 'Spectrum not found' });
-  //   } else {
-  //     res.status(200).json({
-  //       message: 'Emotion deleted successfully',
-  //       updatedSpectrum: response,
-  //     });
-  //   }
-  // })
-  // .catch((err) => {
-  //   console.error(err);
-  //   res.status(500).json({ message: 'Failed to delete Emotion', err });
-  // });
 };
 
 //////////////////////////////////---------------UPDATE---------------////////////-------------------------
 module.exports.updateSpectrum = (req, res) => {
-  const { spectrum, color, emotion, need } = req.body;
-  Emotion.findByIdAndUpdate(
-    req.params.spectrumId,
-    {
-      spectrum: spectrum,
-      color: color,
-    },
-    { new: true }
-  )
+  const { spectrum, color } = req.body;
+  Emotion.findByIdAndUpdate(req.params.spectrumId, {
+    spectrum: spectrum,
+    color: color,
+  }, { new: true })
     .then((response) => {
       if (!response) {
         res.status(404).json({ message: "Spectrum not found" });
@@ -130,14 +114,13 @@ module.exports.updateSpectrum = (req, res) => {
 };
 
 module.exports.updateEmotion = async (req, res) => {
-  const { emotion, need, emotionId, spectrumId } = req.body;
+  const { emotion, emotionId, spectrumId } = req.body;
 
   await Emotion.findOneAndUpdate(
     { _id: spectrumId, "stock._id": emotionId },
     {
       $set: {
-        "stock.$.title": emotion,
-        "stock.$.need": need,
+        "stock.$.title": emotion
       },
     },
     { new: true }
@@ -155,7 +138,7 @@ module.exports.updateEmotion = async (req, res) => {
     .catch((err) =>
       res.status(500).json({
         message: "coudn't update Emotion",
-        err,
+        err
       })
     );
 };
