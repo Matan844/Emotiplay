@@ -20,6 +20,7 @@ export default function Checker() {
       setMyOrder(order);
       console.log(order);
     }, []);
+    
     function finishingFunc() {
         const videoId = videoSrc[counter]._id;
         saveWatchedVideo(videoId);
@@ -76,9 +77,14 @@ export default function Checker() {
             </div>
 
             <div className='w-3/6 p-8 '>
-                <VideoPlayer counter={counter} setCounter={setCounter} />
+          {  videoSrc[counter]?.cloudinaryLink ? (
+             <div>  <VideoPlayer counter={counter} setCounter={setCounter} />
                 <Questioning setNextPage={setNextPage}  counter={counter} myOrder={myOrder} setCounter={setCounter} />
-            </div>
+                </div> ):(
+        <div className='mt-48 text-4xl'>You have rated all the videos at the moment, thank you very much! </div>
+
+          )}
+                </div>
             {nextPage == true ? (
                  <div className='w-1/6 flex justify-center items-center  '>
                  <a className='object-none  rounded p-3 text-white text-xl bg-blue-600'
