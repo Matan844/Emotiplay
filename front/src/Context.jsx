@@ -15,16 +15,25 @@ export default function Context() {
     const [emotion, setEmotion] = useState();
     const [correct, setCorrect] = useState();
     const [wrong, setWrong] = useState();
+    const [FilterdVideos , setFilterdVideos] = useState()
     const { pathname } = useLocation();
 
     useEffect(() => {
         const fetchData = async () => {
+            const filterd = JSON.parse(localStorage.getItem('filtered'))
+            console.log(filterd);
             try {
                 let correct = 0;
                 let id;
                 try {
                     const { data: videos } = await axios.get('http://localhost:8639/video/allVideos')
-                    setVideoSrc(videos)
+                   if (filterd) {
+                       setVideoSrc(filterd)
+                       console.log('ididit');
+                    }
+                    else{
+                       setVideoSrc(videos)
+                   }
                     if (pathname.split('/')[2] >= 0) {
                         const correctAnswer = videos[pathname.split('/')[2]].feeling.emotion
                         id = videos[pathname.split('/')[2]].feeling.spectrum
@@ -89,6 +98,7 @@ export default function Context() {
         wrong, setWrong,
         allEmotions, setAllEmotions,
         log, setlog,
-        pass, setpass
+        pass, setpass,
+        FilterdVideos , setFilterdVideos
     }
 }

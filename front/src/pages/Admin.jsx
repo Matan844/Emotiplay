@@ -17,6 +17,7 @@ export default function Admin() {
   const [deletevideoID,setdeletevideoID] = useState()
   const [popupemotion, setpopupemotion] = useState();
   const [status, setStatus] = useState("");
+  const [Allvideos,setAllvideos] = useState()
   const [toEdit, setToEdit] = useState(`${window} invisible`)
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -41,6 +42,19 @@ export default function Admin() {
     setdeletevideoID(videoID)
     setShowdeletePopUp(true)
   }
+
+  useEffect(() => {
+    axios.get('http://localhost:8639/video/allVideos')
+      .then(response => {
+        const videos = response.data;
+        setAllvideos(videos);
+      })
+      .catch(error => {
+        console.log("Error occurred:", error);
+      });
+  }, []);
+
+
   return (
     <div className="w-full h-screen">
       {localStorage.getItem('adpas') !== '0987' ?
@@ -84,7 +98,7 @@ export default function Admin() {
             </thead>
 
             <tbody>
-              {videoSrc.map((item, index) => {
+              {Allvideos?.map((item, index) => {
                 const similar = item?.validation?.wrong
                   ? item?.validation?.wrong
                   : 0;
@@ -141,7 +155,9 @@ export default function Admin() {
 
                     <td className="border border-gray-500 px-4 py-2">
                       {" "}
-                      <Graph index={index} />
+                     {Allvideos && 
+                     <Graph videoSrc={Allvideos} index={index} />
+                    }
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">

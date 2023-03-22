@@ -26,8 +26,8 @@ Chart.register(ArcElement);
 
 
 export default function Graph (props){
-  const { videoSrc } = useContext(Storage)
- const index = props.index
+  const index = props.index
+    const videoSrc = props.videoSrc
   const options = {
         responsive: true,
         plugins: {
@@ -68,11 +68,15 @@ export default function Graph (props){
             data: [videoSrc[index]?.quality?.[5], 0],
             backgroundColor: "orange",
           },
-        ],
+        ]
+      
       };
     
    return(
+   <div> 
 <div className="w-56 h-28"><Bar options={options} data={data} /></div>
-
+   
+</div>
    ) 
-}
+  }
+ 
