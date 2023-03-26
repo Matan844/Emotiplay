@@ -10,6 +10,8 @@ import axios from 'axios';
 export default function Checker() {
     const params = useParams();
     const { videoSrc} = useContext(Storage)
+    const {FilterdVideos , setFilterdVideos} = useContext(Storage)
+    let videos = [{}]
     const [counter, setCounter] = useState(Number(params.index))
     const navigate = useNavigate();
     // setTitle(Number(params.index))
@@ -29,12 +31,29 @@ export default function Checker() {
         const order = [0,1,2,3].sort(() => Math.random() - 0.5);
         setMyOrder(order);
         console.log(order);
+        setFilterdVideos(FilterdVideos++)
     }
     const saveWatchedVideo = (videoId) => {
         const userId = localStorage.getItem("id");
         axios
           .post("http://localhost:8639/user/watchedVideoSave", { userId: userId , videoId: videoId})
-          .then((response) => console.log(response));}
+          .then(
+            axios.get('http://localhost:8639/video/allVideos')
+            .then((res)=> { videos = res.data} )
+            .then(()=>{ 
+            axios.post('http://localhost:8639/user/getallviedvideos', { userId: userId })
+          .then((response) => { 
+            const viewdvideo = response.data.message;
+            console.log('viewed videos:', viewdvideo);
+            console.log('video sources:', videos);
+            const filtered = videos.filter(obj => !viewdvideo.includes(obj._id));
+            console.log('filtered videos:', filtered);
+             localStorage.setItem('filtered',JSON.stringify(filtered));
+             setFilterdVideos(FilterdVideos++)
+          })
+          .catch((error) => {
+            console.error('Error fetching data:', error);
+          })}));}
 
 
     const handleRating = () => {
