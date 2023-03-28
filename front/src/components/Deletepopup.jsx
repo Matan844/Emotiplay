@@ -3,10 +3,14 @@ import React, { useState } from "react";
 
 export default function Deletepopup (props) {
   const exitpopup = props.setShowdeletePopUp
+  const publicId = props.publicId
   console.log(props.videoId);
+  console.log(props.publicId);
   const [beforedelete, setbeforedelete] = useState(true)
+  
   async function deletevideo(id) {
     axios.post('http://localhost:8639/video/deleteVideo',{id : id})
+    axios.post('http://localhost:8639/video/deletefromcloudinaryVideo',{publicId : publicId})
     .then(response => setbeforedelete(false))
     .catch(error => console.log(error))
   }

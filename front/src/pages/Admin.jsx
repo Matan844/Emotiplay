@@ -16,7 +16,7 @@ export default function Admin() {
   const [popupvideo, setpopupvideo] = useState();
   const [deletevideoID,setdeletevideoID] = useState()
   const [popupemotion, setpopupemotion] = useState();
-  const [status, setStatus] = useState("");
+  const [publicId, setPublicId] = useState("");
   const [Allvideos,setAllvideos] = useState()
   const [toEdit, setToEdit] = useState(`${window} invisible`)
   const togglePopup = () => {
@@ -38,8 +38,10 @@ export default function Admin() {
       localStorage.setItem("adpas", "0987")
     }
   }
-  function ConfirmDelete(videoID) {
+  function ConfirmDelete(videoID,url) {
     setdeletevideoID(videoID)
+    console.log(url);
+    setPublicId(url.split('/').slice(-1)[0].split('.')[0])
     setShowdeletePopUp(true)
   }
 
@@ -192,7 +194,7 @@ export default function Admin() {
                     <td className="border border-gray-500  px-4 py-2 ">
                       {item?.inappropriate}
                       <br/>
-                      <button className="bg-red-600 p-2 mt-4" onClick={()=>ConfirmDelete(item._id)}>Delete</button>
+                      <button className="bg-red-600 p-2 mt-4" onClick={()=>ConfirmDelete(item._id,item.cloudinaryLink)}>Delete</button>
                     </td>
 
                   </tr>
@@ -202,7 +204,7 @@ export default function Admin() {
           </table>
                 <div>
                 {showdeletePopUp && (
-              <Deletepopup setShowdeletePopUp={setShowdeletePopUp} videoId ={deletevideoID}></Deletepopup>
+              <Deletepopup setShowdeletePopUp={setShowdeletePopUp} publicId={publicId} videoId ={deletevideoID}></Deletepopup>
             )}
                 </div>
           <div>
