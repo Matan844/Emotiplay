@@ -24,6 +24,7 @@ const Enter = () => {
             const filtered = videos.filter(obj => !viewdvideo.includes(obj._id));
             console.log('filtered videos:', filtered);
              localStorage.setItem('filtered',JSON.stringify(filtered));
+             setFilterdVideos(FilterdVideos++)
           })
           .catch((error) => {
             console.error('Error fetching data:', error);

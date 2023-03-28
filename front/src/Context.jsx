@@ -77,7 +77,7 @@ export default function Context() {
             }
         }
         fetchData()
-    }, [])
+    }, [FilterdVideos])
 
     const random = (array) => {
         const index = Math.floor(Math.random() * array.length)

@@ -27,11 +27,17 @@ export default function ContactUs(props) {
     };
     setverifycode(verificationCode);
     emailjs
+      // .send(
+      //   "service_xrl3dpq",
+      //   "template_w2kkkbc",
+      //   templateParams,
+      //   "N_38oe5UXxI5n1GKz"
+      // )
       .send(
-        "service_xrl3dpq",
-        "template_w2kkkbc",
+        "service_2ovz1n8",
+        "template_n67tff8",
         templateParams,
-        "N_38oe5UXxI5n1GKz"
+        "UWz26IM1ucSnroFSg"
       )
       .then(
         (result) => {
