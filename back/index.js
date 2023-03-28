@@ -31,37 +31,38 @@ cloudinary.config({
   api_secret: 'k5CQqGPMR2HA5PUwegiZQwfp1HM'
 });
 
-// delete unused videos from Cloudinary
+
 async function deleteUnusedVideos() {
   try {
-    const videos = await Video.find(); // get all videos from MongoDB
+    const videos = await Video.find();
    
-    const cloudinaryResources = await cloudinary.api.resources({ // get all Cloudinary resources
+    const cloudinaryResources = await cloudinary.api.resources({
       type: 'upload',
       format: 'mp4',
       resource_type: 'video'
     });
-    const cloudinaryLinks = cloudinaryResources.resources.map((resource) => { // get an array of Cloudinary links
+    const cloudinaryLinks = cloudinaryResources.resources.map((resource) => {
       return resource.secure_url
     });
-    const usedLinks = videos.map((video) => { // get an array of used video links from MongoDB
-      return video.cloudinaryLink;
+    const usedLinks = videos.map((video) => {
+      return video.cloudinaryLink.split('/').slice(-1)[0].split('.')[0]
     });
 
-    const unusedLinks = cloudinaryLinks.filter((link) => { // get an array of unused Cloudinary links
-      return usedLinks.includes(link);
+    const unusedLinks = cloudinaryLinks.filter((link) => { 
+     const splitlink = link.split('/').slice(-1)[0].split('.')[0]
+      return !usedLinks.includes(splitlink)
     });
-
-    unusedLinks.forEach(async (link) => { // delete unused Cloudinary resources
-      const publicId = link.split('/').slice(-1)[0].split('.')[0];
-      console.log(`Deleting ${publicId}`);});
-    
-      // cloudinary.uploader.destroy(publicId , {resource_type: 'video'});
+  
+    unusedLinks.forEach(async (link) => { 
+      const publicId =  link.split('/').slice(-1)[0].split('.')[0];
+      console.log(unusedLinks);
+      console.log(`Deleting ${publicId}`);
+      cloudinary.uploader.destroy(publicId , {resource_type: 'video'});});
   } catch (err) {
     console.log('Error deleting unused videos', err);
   }
 }
-deleteUnusedVideos(); // call the function to delete unused videos when the script is run
+deleteUnusedVideos(); 
 
 const app = express();
 app.use(express.json());
