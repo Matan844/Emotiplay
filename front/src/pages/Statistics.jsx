@@ -1,12 +1,11 @@
 import AdminNavBar from "../components/AdminNavbar";
-import { useContext } from "react";
 import gears from "../lotty/gears.json";
 import Lottie from "lottie-react";
 export default function EmotionControl(params) {
   return (
     <div className="flex items-center justify-center w-screen">
       {" "}
-      {localStorage.getItem("adpas") == "0987" ? (
+      {localStorage.getItem("adpas") === "0987" ? (
         <div className="text-center w-screen text-2xl">
           <AdminNavBar className="" />
           <div className="flex-col flex items-center justify-center ">
