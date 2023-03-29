@@ -77,11 +77,11 @@ export default function ContactUs(props) {
   }
 
   return (
-    <div className="h-auto py-16 flex flex-row  ">
+    <div className="h-5/6 flex flex-row ">
         <div className="mx-auto grid  desktop:grid-cols-2 laptop:grid-cols-1 gap-y-16 gap-x-8 ">
           <Lottie animationData={Image1} loop={true} className="w-96 h-auto place-self-center" />
           {submited ? (
-            <div className="max-w-xl lg:max-w-lg place-self-center m-2">
+            <div className="max-w-xl lg:max-w-lg place-self-center m-2 pb-3 ">
               <h2 className="text-3xl font-bold tracking-tightsm:text-4xl">
                 Easy login via email.
               </h2>
@@ -120,8 +120,8 @@ export default function ContactUs(props) {
               </div>
             </div>
           ) : (
-            <div className="m-2">
-              <h2 className="text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl ">
+            <div className="max-w-xl lg:max-w-lg place-self-center m-2 pb-2 p-1">
+              <h2 className="text-3xl font-bold tracking-tight text-black sm:text-4xl ">
                 Enter the verification code you received in the email.
               </h2>
               <div className="mt-6 flex max-w-md gap-x-4">
@@ -146,7 +146,7 @@ export default function ContactUs(props) {
                   <button
                     type="submit"
                     onClick={() => checkverify()}
-                    className="flex-none rounded-md bg-blue-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-md hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                    className="flex-none rounded-md bg-blue-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-md hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 m-1"
                   >
                     Log in
                   </button>

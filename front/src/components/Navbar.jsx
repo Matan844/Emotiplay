@@ -1,37 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { Collapse } from 'flowbite';
 import logo from '../images/logo.png'
 import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 export default function Navbar() {
     const navigate = useNavigate()
     const [dropdown, setDropdown] = useState("hidden")
-    // const targetElRef = useRef(null)
-    // const triggerElRef = useRef(null)
-    // const collapseRef = useRef(null)
-
-    // useEffect(() => {
-    // const $targetEl = targetElRef.current;
-    // const $triggerEl = triggerElRef.current;
-
-    // const options = {
-    //     onCollapse: () => {
-    //         console.log('element has been collapsed')
-    //     },
-    //     onExpand: () => {
-    //         console.log('element has been expanded')
-    //     },
-    //     onToggle: () => {
-    //         console.log('element has been toggled')
-    //     }
-    // };
-
-    // const collapse = new Collapse($targetEl, $triggerEl, options);
-    // collapseRef.current = collapse;
-    // }, [])
 
     return (
-        <div className="w-screen h-flex justify-between items-center shadow-md bg-white" >
+        <div className="w-full justify-between items-center shadow-md bg-white" >
 
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded flex justify-between">
                 <a href="http://emotiplay.com/" className="flex items-center">

@@ -20,7 +20,7 @@ export const Storage = createContext()
 function App() {
   const values = Context()
   const [verifyId, setverifyId] = useState("")
-  const [recheck,setrecheck] = useState(false)
+  const [recheck, setrecheck] = useState(false)
 
   const verified = (email) => {
     axios.post('http://localhost:8639/user/checkID', { email: email })
@@ -35,20 +35,23 @@ function App() {
 
   return (
     <Storage.Provider value={values}>
-      <Navbar />  
-      <Routes>
-        <Route path="/" element={<ContactUs />}></Route>
-        <Route path="/enter" element={verifyId == localStorage.getItem('id') ? < Enter /> : <Enter />}></Route>
-        <Route path="/donor" element={verifyId == localStorage.getItem('id') ?<Donor /> : <Donor />}></Route>
-        <Route path="/preview" element={verifyId == localStorage.getItem('id') ?<Preview />: <Preview /> }></Route>
-        <Route path="/checker/:index" element={verifyId == localStorage.getItem('id') ?<Checker /> : <Checker />}></Route>
-        <Route path="/admin" element={verifyId == localStorage.getItem('id') ?<Admin />: <Admin /> }></Route>
-        <Route path="/EmotionControl" element={verifyId == localStorage.getItem('id') ?<EmotionControl /> : <EmotionControl />}></Route>
-        <Route path="/EmotionEditor" element={verifyId == localStorage.getItem('id') ?<EmotionEditor /> : <EmotionEditor />}></Route>
-        <Route path="/statistics" element={verifyId == localStorage.getItem('id') ?<Statistics /> : <Statistics />}></Route>
-        <Route path="/thankyou" element={verifyId == localStorage.getItem('id') ?<Thankyou /> : <Thankyou />}></Route>
-        <Route path="/emotionlist" element={verifyId == localStorage.getItem('id') ?<Emotionlist />: <Emotionlist /> }></Route>
-      </Routes>
+      <div className="w-screen h-screen">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<ContactUs />}></Route>
+          <Route path="/enter" element={verifyId == localStorage.getItem('id') ? < Enter /> : <Enter />}></Route>
+          <Route path="/donor" element={verifyId == localStorage.getItem('id') ? <Donor /> : <Donor />}></Route>
+          <Route path="/preview" element={verifyId == localStorage.getItem('id') ? <Preview /> : <Preview />}></Route>
+          <Route path="/checker/:index" element={verifyId == localStorage.getItem('id') ? <Checker /> : <Checker />}></Route>
+          <Route path="/admin" element={verifyId == localStorage.getItem('id') ? <Admin /> : <Admin />}></Route>
+          <Route path="/EmotionControl" element={verifyId == localStorage.getItem('id') ? <EmotionControl /> : <EmotionControl />}></Route>
+          <Route path="/EmotionEditor" element={verifyId == localStorage.getItem('id') ? <EmotionEditor /> : <EmotionEditor />}></Route>
+          <Route path="/statistics" element={verifyId == localStorage.getItem('id') ? <Statistics /> : <Statistics />}></Route>
+          <Route path="/thankyou" element={verifyId == localStorage.getItem('id') ? <Thankyou /> : <Thankyou />}></Route>
+          <Route path="/emotionlist" element={verifyId == localStorage.getItem('id') ? <Emotionlist /> : <Emotionlist />}></Route>
+        </Routes>
+      </div>
+
     </Storage.Provider >
   );
 }

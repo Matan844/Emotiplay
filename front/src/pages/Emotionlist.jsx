@@ -10,7 +10,7 @@ export default function Emotionlist() {
   console.log(emotionList);
   return (
     <div className=" w-full">
-      <Lottie className="w-2/5 h-auto" animationData={Animation} loop={true} />
+      <Lottie className="desktop:h-auto tablet:h-1/2" animationData={Animation} loop={true} />
 
       <div className="w-1/2 flex flex-col content-end ">
         <h3 className=" w-full text-2xl text-center mt-7">
