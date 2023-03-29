@@ -55,7 +55,7 @@ export default function ContactUs(props) {
       const { data } = await axios.post(
         "http://localhost:8639/user/createUser",
         {
-          email:email,
+          email: email,
         }
       );
       console.log(data._id)
@@ -63,7 +63,7 @@ export default function ContactUs(props) {
       navigate("/enter");
       window.location.reload();
     }
-    else{
+    else {
       alert('wrong code')
       setbuttonclick(false)
 
@@ -71,16 +71,15 @@ export default function ContactUs(props) {
   }
 
   return (
-    <div className="relative isolate  bg--50  h-auto py-16 flex-row sm:py-24 lg:py-32 ">
-      <div className="mx-auto max-w-7xl px-6  flex-row lg:px-8 ">
-        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 flex-row lg:max-w-none lg:grid-cols-2 ">
+    <div className="h-auto py-16 flex flex-row  ">
+        <div className="mx-auto grid  desktop:grid-cols-2 laptop:grid-cols-1 gap-y-16 gap-x-8 ">
           <Lottie animationData={Image1} loop={true} className="w-96 h-auto place-self-center" />
           {submited ? (
-            <div className="max-w-xl lg:max-w-lg place-self-center">
-              <h2 className="text-3xl font-bold tracking-tight text--900 sm:text-4xl">
+            <div className="max-w-xl lg:max-w-lg place-self-center m-2">
+              <h2 className="text-3xl font-bold tracking-tightsm:text-4xl">
                 Easy login via email.
               </h2>
-              <p className="mt-4 text-lg leading-8 text--700">
+              <p className="mt-4 text-lg leading-8">
                 Sign in with email to contribute a video or rate others' videos
                 to improve our system and help children on the spectrum
                 understand emotions
@@ -92,31 +91,31 @@ export default function ContactUs(props) {
                   type="email"
                   autoComplete="email"
                   required
-                  className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring--500 sm:text-sm sm:leading-6"
+                  className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-black shadow-md ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   placeholder="Enter your email"
                   onChange={(e) => setemail(e.target.value)}
                 />
-             {buttonclick ? (
-  <button
-  type="submit"
-  className="flex-none rounded-md bg--500 py-2.5 px-3.5 text-sm font-semibold   text-white shadow-sm bg-blue-500 hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline--500"
-  onClick={() => sendemail()}
->
-  Get a verification code
-</button>
-             ):(
-              <button
-              type="submit"
-              className="flex-none rounded-md bg--500 py-2.5 px-3.5 text-sm font-semibold !cursor-wait text-white shadow-sm  bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline--500"
-            >
-              Get a verification code
-            </button>
-             )} 
+                {buttonclick ? (
+                  <button
+                    type="submit"
+                    className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold   text-white shadow-md bg-blue-500 hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline"
+                    onClick={() => sendemail()}
+                  >
+                    Get a verification code
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold !cursor-wait text-white shadow-md  bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline"
+                  >
+                    Get a verification code
+                  </button>
+                )}
               </div>
             </div>
           ) : (
-            <div className="max-w-xl flex-row lg:max-w-lg">
-              <h2 className="text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl">
+            <div className="m-2">
+              <h2 className="text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl ">
                 Enter the verification code you received in the email.
               </h2>
               <div className="mt-6 flex max-w-md gap-x-4">
@@ -126,32 +125,32 @@ export default function ContactUs(props) {
                   type="number"
                   autoComplete="email"
                   required
-                  className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring--500 sm:text-sm sm:leading-6"
+                  className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-black shadow-md ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   placeholder="Enter your verification code"
                   onChange={(e) => {
                     setcheck(e.target.value);
                   }}
                 />
-               {buttonclick ? ( <button
+                {buttonclick ? (<button
                   type="submit"
-                  className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm bg-slate-500 !cursor-wait focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold text-white shadow-md bg-slate-500 !cursor-wait focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                 >
                   Log in
-                </button>):(
+                </button>) : (
                   <button
-                  type="submit"
-                  onClick={() => checkverify()}
-                  className="flex-none rounded-md bg-blue-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
-                >
-                  Log in
-                </button>
+                    type="submit"
+                    onClick={() => checkverify()}
+                    className="flex-none rounded-md bg-blue-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-md hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  >
+                    Log in
+                  </button>
 
                 )}
               </div>
             </div>
           )}
         </div>
-      </div>
+      
     </div>
   );
 }

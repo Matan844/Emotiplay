@@ -35,7 +35,7 @@ function App() {
 
   return (
     <Storage.Provider value={values}>
-      <Navbar />
+      <Navbar />  
       <Routes>
         <Route path="/" element={<ContactUs />}></Route>
         <Route path="/enter" element={verifyId == localStorage.getItem('id') ? < Enter /> : <Enter />}></Route>
