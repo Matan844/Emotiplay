@@ -1,6 +1,6 @@
 import { Bar } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
-import { useContext } from "react";
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,8 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend,
 } from "chart.js";
-import { Storage } from "../App";
+
 
 
 ChartJS.register(

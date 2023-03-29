@@ -11,7 +11,7 @@ export default function Navbar() {
 
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded flex justify-between">
                 <a href="http://emotiplay.com/" className="flex items-center">
-                    <img src={logo} className="w-64 mr-3 sm:h-9" />
+                    <img src={logo} alt="" className="w-64 mr-3 sm:h-9" />
                 </a>
                 <div className=" w-56 container  px-4 flex flex-wrap items-center justify-between ">
 

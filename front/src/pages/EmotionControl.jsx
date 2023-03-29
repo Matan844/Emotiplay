@@ -2,14 +2,11 @@ import AdminNavBar from "../components/AdminNavbar";
 import { Storage } from "../App";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export default function Statistics() {
-  const navigate = useNavigate();
   const { emotionList } = useContext(Storage);
-  const [spectrum, setSpectrum] = useState("")
-  const [emotion, setEmotion] = useState("")
+
   const [newEmotion, setNewEmotion] = useState("")
   const [svgDesign, setSvgDesign] = useState("")
   const [addEmotionDesign, setAddEmotionDesign] = useState("")
@@ -72,7 +69,7 @@ export default function Statistics() {
 
   return (
     <div >
-      {localStorage.getItem('adpas') == '0987' ? (
+      {localStorage.getItem('adpas') === '0987' ? (
         <div className="w-screen"> <AdminNavBar />
 
           <div className="flex w-full " style={{ "flexWrap": "wrap" }} >
@@ -132,7 +129,7 @@ export default function Statistics() {
                       <li className="flex items-center justify-between p-2 border-2 w-48 ml-2 mr-2 rounded">
 
                         <div className="flex items-center">
-                          {item?.need == true ? (
+                          {item?.need === true ? (
                             <input
                               type="checkbox"
                               className="form-checkbox h-4 w-5 text-blue-500"
