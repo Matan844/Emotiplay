@@ -2,13 +2,12 @@ import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Storage } from "../App";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Preview() {
   const {
     register,
-    handleSubmit,
-    formState: { errors },
+    handleSubmit
   } = useForm();
   const navigate = useNavigate();
   const { emotionList } = useContext(Storage);
@@ -43,9 +42,6 @@ export default function Preview() {
         console.log("can't add video:", error);
         alert(error.response.data.message);
       });
-  }
-  {
-    console.log(emotionList);
   }
   return (
     <div className="w-screen h-screen flex justify-center flex-row items-center bg--50">

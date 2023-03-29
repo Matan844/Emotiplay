@@ -6,9 +6,9 @@ import Image1 from "../lotty/login.json";
 import axios from "axios";
 
 export default function ContactUs(props) {
-  useEffect(() => {
-    localStorage.removeItem("email");
-  }, []);
+  // useEffect(() => {
+  //   localStorage.removeItem("email");
+  // }, []);
   const [email, setemail] = useState();
   const [check, setcheck] = useState();
   const [submited, setsubmited] = useState(true);
@@ -104,7 +104,7 @@ export default function ContactUs(props) {
                 {buttonclick ? (
                   <button
                     type="submit"
-                    className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold   text-white shadow-md bg-blue-500 hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline"
+                    className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold   text-white shadow-md bg-blue-500 hover:bg-blue-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline"
                     onClick={() => sendemail()}
                   >
                     Get a verification code
@@ -112,7 +112,7 @@ export default function ContactUs(props) {
                 ) : (
                   <button
                     type="submit"
-                    className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold !cursor-wait text-white shadow-md  bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline"
+                    className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold !cursor-wait text-white shadow-md  bg-slate-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline"
                   >
                     Get a verification code
                   </button>

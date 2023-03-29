@@ -1,5 +1,4 @@
 import AdminNavBar from "../components/AdminNavbar";
-import { useContext } from "react";
 import gears from "../lotty/gears.json";
 import Lottie from "lottie-react";
 export default function EmotionControl(params) {
