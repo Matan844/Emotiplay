@@ -2,7 +2,13 @@ const Video = require('../models/Video');
 const Emotion = require('../models/Emotion');
 const { default: mongoose } = require('mongoose');
 const Review = require('../models/Review');
+const cloudinary = require('cloudinary').v2;
 
+cloudinary.config({
+  cloud_name: 'dsgdoguhb',
+  api_key: '936228414444438',
+  api_secret: 'k5CQqGPMR2HA5PUwegiZQwfp1HM'
+});
 
 module.exports.addVideo = async (req, res) => {
   const { cloudinaryLink, emotionId, emotion, spectrum, uploader } = req.body;
@@ -78,15 +84,34 @@ module.exports.changeStatus = async (req, res) => {
  
 module.exports.deleteVideo = async (req, res) => {
   const videoId =  req.body.id;
+  
   try {
     const deletedVideo = await Video.findByIdAndDelete(videoId);
     console.log(videoId);
     if (!deletedVideo) {
       return res.status(404).json({ message: 'Video not found' });
     }
-    return res.status(200).json({ message: 'Video deleted successfully' });
+    return res.status(200).json({ message: 'Video deleted successfully' })
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: 'Internal server error' });
   }
 }
+
+module.exports.deletefromcloudinaryVideo = async (req, res) => {
+  const publicId = await  req.body.publicId;
+try {
+  await cloudinary.uploader.destroy(publicId ,{resource_type: 'video'} , function(error,result) {
+      if (result) {
+        res.status(200).json({message:  result})
+      }
+      else {
+        res.status(500).json({ message: error })
+  }}) 
+} catch (res) {
+  console.log(res);
+}
+}
+
+
+

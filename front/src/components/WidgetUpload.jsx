@@ -34,6 +34,9 @@ const WidgetUpload = (props) => {
                 console.log(error);
             }
             else {
+              const tryupload = result?.info?.url
+              const publicId = tryupload. split('/').slice(-1)[0].split('.')[0]
+                localStorage.setItem('tryupload' ,  publicId )
                 console.log("cloudinary connected", result?.info?.url);
             }
             if (result?.info?.url) {

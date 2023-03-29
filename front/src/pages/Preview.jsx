@@ -14,12 +14,15 @@ export default function Preview() {
   const { emotionList } = useContext(Storage);
   const videoLink = localStorage.getItem("videoPreview");
 
-  const back = () => {
+  const back =  () => {
+   const publicId = localStorage.getItem('tryupload')
+    axios.post('http://localhost:8639/video/deletefromcloudinaryVideo',{publicId : publicId})
     navigate("/donor");
     localStorage.removeItem("videoPreview");
   };
 
   function onSubmit(data) {
+    localStorage.removeItem("tryupload");
     const { spectrum, title, emotionId } = JSON.parse(data.emotion);
     axios
       .post("http://localhost:8639/video/addVideo", {

@@ -10,7 +10,8 @@ import axios from 'axios';
 export default function Checker() {
     const params = useParams();
     const navigate = useNavigate();
-    const { videoSrc, myOrder, setMyOrder } = useContext(Storage)
+    const { videoSrc, myOrder, setMyOrder, FilterdVideos, setFilterdVideos } = useContext(Storage)
+    let videos = [{}]
     const [counter, setCounter] = useState(Number(params.index))
     const [nextPage, setNextPage] = useState(false)
 
@@ -26,13 +27,31 @@ export default function Checker() {
         setCounter(counter + 1)
         const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
         setMyOrder(order);
-        console.log(order);
+        // console.log(order);
+        setFilterdVideos(FilterdVideos++)
     }
     const saveWatchedVideo = (videoId) => {
         const userId = localStorage.getItem("id");
         axios
             .post("http://localhost:8639/user/watchedVideoSave", { userId: userId, videoId: videoId })
-            .then((response) => console.log(response));
+            .then(
+                axios.get('http://localhost:8639/video/allVideos')
+                    .then((res) => { videos = res.data })
+                    .then(() => {
+                        axios.post('http://localhost:8639/user/getallviedvideos', { userId: userId })
+                            .then((response) => {
+                                const viewdvideo = response.data.message;
+                                // console.log('viewed videos:', viewdvideo);
+                                // console.log('video sources:', videos);
+                                const filtered = videos.filter(obj => !viewdvideo.includes(obj._id));
+                                // console.log('filtered videos:', filtered);
+                                localStorage.setItem('filtered', JSON.stringify(filtered));
+                                setFilterdVideos(FilterdVideos++)
+                            })
+                            .catch((error) => {
+                                console.error('Error fetching data:', error);
+                            })
+                    }));
     }
 
 
@@ -68,7 +87,8 @@ export default function Checker() {
             <div className='w-1/6 flex justify-center items-center'>
                 <button className=' bg-orange-600 rounded p-3 text-white text-xl'
                     onClick={() => {
-                        navigate('/enter'); localStorage.removeItem("wrongAnswer");
+                        navigate('/enter');
+                        localStorage.removeItem("wrongAnswer");
                         localStorage.removeItem("firstRandom");
                         localStorage.removeItem("secondRandom");
                         localStorage.removeItem("correctAnswer");
