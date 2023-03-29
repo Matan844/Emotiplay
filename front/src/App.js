@@ -34,6 +34,7 @@ function App() {
 
   return (
     <Storage.Provider value={values}>
+      <div className="w-screen h-screen">
       <Navbar />  
       <Routes>
         <Route path="/" element={<ContactUs />}></Route>
@@ -48,6 +49,7 @@ function App() {
         <Route path="/thankyou" element={verifyId === localStorage.getItem('id') ?<Thankyou /> : <ContactUs />}></Route>
         <Route path="/emotionlist" element={verifyId === localStorage.getItem('id') ?<Emotionlist />: <ContactUs /> }></Route>
       </Routes>
+        </div>
     </Storage.Provider >
   );
 }
