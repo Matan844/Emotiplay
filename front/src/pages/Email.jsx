@@ -1,14 +1,12 @@
 import emailjs from "emailjs-com";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import Image1 from "../lotty/login.json";
 import axios from "axios";
 
 export default function ContactUs(props) {
-  // useEffect(() => {
-  //   localStorage.removeItem("email");
-  // }, []);
+
   const [email, setemail] = useState();
   const [check, setcheck] = useState();
   const [submited, setsubmited] = useState(true);
@@ -54,8 +52,10 @@ export default function ContactUs(props) {
 
   async function checkverify() {
     setbuttonclick(true)
-    console.log(buttonclick);
-    if (check == verifycode) {
+    setcheck(Number(check))
+    console.log(typeof(check));
+    console.log(typeof(verifycode));
+    if (check === verifycode) {
       localStorage.setItem("email", email);
       localStorage.removeItem('id')
       const { data } = await axios.post(
@@ -134,7 +134,7 @@ export default function ContactUs(props) {
                   className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-black shadow-md ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                   placeholder="Enter your verification code"
                   onChange={(e) => {
-                    setcheck(e.target.value);
+                    setcheck(Number(e.target.value));
                   }}
                 />
                 {buttonclick ? (<button

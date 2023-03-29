@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from "react";
-import { CloudConfig, Cloudinary } from "@cloudinary/url-gen";
-import { useLocation, useParams } from "react-router-dom";
 
 
 export default function Context() {
@@ -11,7 +9,6 @@ export default function Context() {
     const [videoPreview, setVideoPreview] = useState();
     const [emotionList, setEmotionList] = useState([]);
     const [allEmotions, setAllEmotions] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [videoSrc, setVideoSrc] = useState([]);
     const [myOrder, setMyOrder] = useState([]);
     const [correct, setCorrect] = useState();
@@ -19,15 +16,12 @@ export default function Context() {
     const [wrong, setWrong] = useState();
     const [log, setlog] = useState(false);
     const [pass, setpass] = useState(false);
-    const { pathname } = useLocation();
 
     useEffect(() => {
         //IIFE = immediately invoked function expression
         (async () => {
             const filterd = JSON.parse(localStorage.getItem('filtered'))
             try {
-                let correct = 0;
-                let id = ""
                 try {
                     const { data: videos } = await axios.get('http://localhost:8639/video/allVideos')
                     if (filterd) {

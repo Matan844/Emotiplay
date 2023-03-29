@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import WidgetUpload from "../components/WidgetUpload";
-import Image2 from "../lotty/uploading.json";
-import Image3 from "../images/monkey.png";
-import logo from "../images/logo.png";
+
 import Lottie from "lottie-react";
 import uploadLotty from "../lotty/uploadDoc.json";
-import { useContext } from "react";
-import { Storage } from "../App";
+
 
 export default function Donor() {
   const [acceptterms, setacceptterms] = useState(false);

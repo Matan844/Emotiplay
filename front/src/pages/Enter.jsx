@@ -1,9 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import Emotion from "../lotty/enter.json"
 import Lottie from "lottie-react";
-import { useContext, useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef } from "react"
 import { Storage } from "../App"
-import { color } from '@cloudinary/url-gen/qualifiers/background';
 import axios from 'axios';
 
 
@@ -24,7 +23,7 @@ const Enter = () => {
             const filtered = videos.filter(obj => !viewdvideo.includes(obj._id));
             console.log('filtered videos:', filtered);
              localStorage.setItem('filtered',JSON.stringify(filtered));
-             setFilterdVideos(FilterdVideos++)
+             setFilterdVideos(...FilterdVideos ,1)
           })
           .catch((error) => {
             console.error('Error fetching data:', error);
@@ -33,8 +32,7 @@ const Enter = () => {
 
 
 
-    const { setCloudinaryLink } = useContext(Storage)
-    const cloudinaryRef = useRef()
+   
     const widgetRef = useRef()
     return (
         <div className=" h-screen grid tablet:grid-cols-1 laptop:grid-cols-1 desktop:grid-cols-3">

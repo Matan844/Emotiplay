@@ -2,8 +2,7 @@ import React, { useState, useRef, useContext } from 'react';
 import { Storage } from '../App';
 
 const SmallVideos = (props) => {
-    const { videoSrc } = useContext(Storage)
-    const [progress, setProgress] = useState(0);
+    const [ setProgress] = useState(0);
     const videoRef = useRef(null);
 
     const handleProgress = () => {

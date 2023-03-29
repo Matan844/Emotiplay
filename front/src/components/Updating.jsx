@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 
 export default function Updating(props) {
@@ -18,7 +18,7 @@ export default function Updating(props) {
     }
 
     const updateElement = () => {
-        if (element == "spectrum") {
+        if (element === "spectrum") {
             if (spectrumId && newElement) {
                 axios.put(`http://localhost:8639/emotion/updateSpectrum/${spectrumId}`, {
                     spectrum: newElement,
@@ -33,7 +33,7 @@ export default function Updating(props) {
                 console.log("Data is missing");
                 alert("Enter a spectrum name")
             }
-        } else if (element == "emotion") {
+        } else if (element === "emotion") {
 
             if (spectrumId && emotionId && newElement) {
                 axios.put('http://localhost:8639/emotion/updateEmotion', {

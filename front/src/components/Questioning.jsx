@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 
@@ -11,11 +11,6 @@ export default function Questioning(props) {
   const [next2, setnext2] = useState(false)
   const [next3, setnext3] = useState(false)
   const [buttonsOptions, setButtonsOptions] = useState([])
-
-  const [correctButton, setCorrectButton] = useState()
-  const [wrongButton, setWrongButton] = useState()
-  const [randomOneButton, setRandomOneButton] = useState()
-  const [randomTwoButton, setRandomTwoButton] = useState()
 
   const qualitySave = (level) => {
     localStorage.setItem("quality", level)
@@ -31,7 +26,6 @@ export default function Questioning(props) {
   useEffect(() => {
     //IIFE = immediately invoked function expression
     (async () => {
-      const filterd = JSON.parse(localStorage.getItem('filtered'))
       try {
         let correct = 0;
         let id = "";
@@ -116,7 +110,7 @@ export default function Questioning(props) {
         console.log("fetch data error : ", err.message)
       }
     })()
-  }, [])
+  }, [pathname])
 
 
   const [clickedL, setCclickedL] = useState(false);
@@ -131,32 +125,32 @@ export default function Questioning(props) {
     if (next1 === false || next2 === false || next3 === false) {
       setNextPage(false)
     }
-  }, [next1, next2, next3])
+  }, [next1, next2, next3,setNextPage])
 
   useEffect(() => {
-    if (clickedL == true || clickedR == true) {
+    if (clickedL === true || clickedR === true) {
       setnext1(true)
     }
-    if (clickedL == false && clickedR == false) {
+    if (clickedL === false && clickedR === false) {
       setnext1(false)
     }
 
   }, [clickedL, clickedR])
 
   useEffect(() => {
-    if (clicked[0] == true || clicked[1] == true || clicked[2] == true || clicked[3] == true || clicked[4] == true || clicked[5] == true) {
+    if (clicked[0] === true || clicked[1] === true || clicked[2] === true || clicked[3] === true || clicked[4] === true || clicked[5] === true) {
       setnext2(true)
     }
-    if (clicked[0] == false && clicked[1] == false && clicked[2] == false && clicked[3] == false && clicked[4] == false && clicked[5] == false) {
+    if (clicked[0] === false && clicked[1] === false && clicked[2] === false && clicked[3] === false && clicked[4] === false && clicked[5] === false) {
       setnext2(false)
     }
   }, [clicked])
 
   useEffect(() => {
-    if (clicked2[0] == true || clicked2[1] == true || clicked2[2] == true || clicked2[3] == true || clicked2[4] == true || clicked2[5] == true) {
+    if (clicked2[0] === true || clicked2[1] === true || clicked2[2] === true || clicked2[3] === true || clicked2[4] === true || clicked2[5] === true) {
       setnext3(true)
     }
-    if (clicked2[0] == false && clicked2[1] == false && clicked2[2] == false && clicked2[3] == false && clicked2[4] == false && clicked2[5] == false) {
+    if (clicked2[0] === false && clicked2[1] === false && clicked2[2] === false && clicked2[3] === false && clicked2[4] === false && clicked2[5] === false) {
       setnext3(false)
     }
   }, [clicked2])
@@ -186,33 +180,29 @@ export default function Questioning(props) {
   };
 
   function buttonclicked(param) {
-    if (param == "L") {
-      if (clickedL == false) {
-        if (clickedR == true) {
+    if (param === "L") {
+      if (clickedL === false) {
+        if (clickedR === true) {
           setCclickedR(false);
         }
         setCclickedL(true);
       }
-      if (clickedL == true) {
+      if (clickedL === true) {
         setCclickedL(false);
       }
     }
-    if (param == "R") {
-      if (clickedR == false) {
-        if (clickedL == true) {
+    if (param === "R") {
+      if (clickedR === false) {
+        if (clickedL === true) {
           setCclickedL(false);
         }
         setCclickedR(true);
       }
-      if (clickedR == true) {
+      if (clickedR === true) {
         setCclickedR(false);
       }
     }
   }
-
-  const answeroption = ['correct', "random", "random", "wrong"]
-
-
   return (
     <div className="">
       {/* {loading ? "hi" : "ho"} */}

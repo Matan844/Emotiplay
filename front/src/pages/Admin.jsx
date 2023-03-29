@@ -7,8 +7,7 @@ import AdminNavBar from "../components/AdminNavbar";
 import axios from "axios";
 import Deletepopup from "../components/Deletepopup";
 export default function Admin() {
-  const { videoSrc } = useContext(Storage);
-  const { log, setlog } = useContext(Storage);
+  const { setlog } = useContext(Storage);
   const { pass, setpass } = useContext(Storage);
 
   const window = "flex justify-center items-center border border-gray-800 p-6 rounded-lg w-40 h-14"
@@ -33,7 +32,7 @@ export default function Admin() {
       .catch((error) => console.log(error));
   }
   function checkpass(pass) {
-    if (pass == "0987") {
+    if (pass === "0987") {
       setlog(true)
       localStorage.setItem("adpas", "0987")
     }

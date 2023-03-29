@@ -90,8 +90,8 @@ export default function Preview() {
                       {emotion.title}
                     </option>
                   );
-                }
-              })
+               }
+               return null   })
             )}
           </select>
 
