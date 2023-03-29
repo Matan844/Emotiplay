@@ -1,38 +1,116 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Collapse } from 'flowbite';
 import logo from '../images/logo.png'
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const navigate = useNavigate()
-    return (
-        <div className="flex justify-between items-center shadow-md fixed z-50 top-0 right-0 left-0 bg-white" >
-            <a href="http://emotiplay.com/">
-                <img src={logo} className="w-64 p-2 z-50" />
-            </a>
+    const [dropdown, setDropdown] = useState("hidden")
+    // const targetElRef = useRef(null)
+    // const triggerElRef = useRef(null)
+    // const collapseRef = useRef(null)
 
-            <div>
-                <button className="p-3 hover:border-x-2"
-                    onClick={() => navigate('../enter')}>
-                    HOME
-                </button>
-                <button className="p-3 hover:border-x-2"
-                    onClick={() => navigate('../emotionlist')}>
-                    DONOR
-                </button>
-                <button className="p-3 hover:border-x-2"
-                    onClick={() => navigate('../checker/0')}>
-                    CHECKER
-                </button>
-                <button className="p-3 hover:border-x-2"
-                    onClick={() => window.open('https://www.emotiplay.com', '_blank')}>
-                    ABOUT US
-                </button>
-                <button className="p-3 hover:border-x-2 mr-2"
-                    onClick={() => window.open('http://emotiplay.com/contact-us/', '_blank')}>
-                    CONTACT US
-                </button>
+    // useEffect(() => {
+    // const $targetEl = targetElRef.current;
+    // const $triggerEl = triggerElRef.current;
+
+    // const options = {
+    //     onCollapse: () => {
+    //         console.log('element has been collapsed')
+    //     },
+    //     onExpand: () => {
+    //         console.log('element has been expanded')
+    //     },
+    //     onToggle: () => {
+    //         console.log('element has been toggled')
+    //     }
+    // };
+
+    // const collapse = new Collapse($targetEl, $triggerEl, options);
+    // collapseRef.current = collapse;
+    // }, [])
+
+    return (
+        <div className="w-screen h-flex justify-between items-center shadow-md bg-white" >
+
+            <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded flex justify-between">
+                <a href="http://emotiplay.com/" className="flex items-center">
+                    <img src={logo} className="w-64 mr-3 sm:h-9" />
+                </a>
+                <div className=" w-56 container  px-4 flex flex-wrap items-center justify-between ">
+
+                    <div className="flex md:order-2">
+                        <button type="button"
+                            onClick={() => navigate('/enter')}
+                            className="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0">
+                            HOME
+                        </button>
+
+                        <button
+                            data-collapse-toggle="navbar-cta"
+                            type="button"
+                            id="triggerEl"
+                            onClick={() => { dropdown === "hidden" ? setDropdown("visible") : setDropdown("hidden") }}
+                            className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                            aria-controls="navbar-cta"
+                            aria-expanded="false">
+
+                            <span className="sr-only">
+                                Open main menu
+                            </span>
+                            <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
+                        </button>
+
+                    </div>
+                </div>
+            </nav >
+
+
+            <div className={`items-center justify-between ${dropdown} w-full md:flex md:w-auto md:order-1`}
+                id="targetEl">
+                <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white  md: ">
+                    <li>
+                        <NavLink to={'../enter'}
+                            onClick={() => setDropdown("hidden")}
+                            className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 " aria-current="page">
+                            HOME
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to={'../emotionlist'}
+                            onClick={() => setDropdown("hidden")}
+                            className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:    ">
+                            STAR
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink to={'../checker/0'}
+                            onClick={() => setDropdown("hidden")}
+                            className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:    ">
+                            EVALUATOR
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink onClick={() => { window.open('https://www.emotiplay.com', '_blank'); setDropdown("hidden") }}
+
+                            className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:    ">
+                            ABOUT US
+                        </NavLink>
+                    </li>
+
+                    <li>
+                        <NavLink onClick={() => { window.open('http://emotiplay.com/contact-us/', '_blank'); setDropdown("hidden") }}
+                            className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:    ">
+                            CONTACT US
+                        </NavLink>
+                    </li>
+                </ul>
             </div>
 
         </div>
+
     )
 }

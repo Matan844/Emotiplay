@@ -8,9 +8,9 @@ import axios from 'axios';
 
 
 const Enter = () => {
-    const {FilterdVideos , setFilterdVideos} = useContext(Storage)
+    const { FilterdVideos, setFilterdVideos } = useContext(Storage)
     let videos = [{}]
-    useEffect(()=>{
+    useEffect(() => {
         axios.get('http://localhost:8639/video/allVideos')
         .then((res)=> { videos = res.data} )
         .then(()=>{
@@ -37,39 +37,40 @@ const Enter = () => {
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
     return (
-        <div className="w-full h-screen flex flex-row justify-evenly items-center sm:py-24  " >
-            <Lottie className="w-1/3 h-auto " animationData={Emotion} loop={true} />
+        <div className=" h-screen grid tablet:grid-cols-1 laptop:grid-cols-1 desktop:grid-cols-3">
 
-            <div className='h-full w-1/4  flex flex-col justify-center'>
-                <h3 className='text-4xl pb-4'>
+            <Lottie className="" animationData={Emotion} loop={true} />
+
+            <div className='grid grid-cols-1 place-content-center'>
+                <h3 className='text-3xl pb-4 place-self-center'>
                     Be a Star
                 </h3>
 
-                <p className='text-2xl'>
+                <p className='text-xl place-self-center p-2'>
                     Our stars help us teach children with autism about emotions, by sending images, video and voices depicting diverse ways of emotion expression
                 </p>
-                <div className='w-auto flex justify-center mt-3'>
-                    <button className="bg-blue-500 p-3 hover:bg-blue-700 text-white font-bold px-5 rounded-full">
+                <div className='place-self-center'>
+                    <button className="bg-blue-600 p-3 hover:bg-blue-700 text-white font-bold px-5 rounded-full w-24">
                         <NavLink to={"/emotionlist"} style={{ textDecoration: 'none' }} onClick={() => widgetRef.current.open()}>
-                            Star
+                            STAR
                         </NavLink>
                     </button>
                 </div>
             </div>
 
-            <div className=' h-full w-1/4 flex flex-col justify-center'>
-                <h3 className='text-4xl pb-4'>
+            <div className='grid grid-cols-1 place-content-center'>
+                <h3 className='text-3xl pb-4 place-self-center'>
                     Be an Evaluator
                 </h3>
 
-                <p className='text-2xl'>
+                <p className='text-xl  place-self-center p-2'>
                     Evaluators help us teach children with autism about emotions, by evaluating and validating the media we collect, making sure it is appropriate and clearly expressed before using it in our program
                 </p>
 
-                <div className=' flex justify-center mt-3'>
-                    <button className="bg-blue-500 p-3 hover:bg-blue-700 text-white font-bold px-5 rounded-full flex justify-end">
+                <div className='place-self-center'>
+                    <button className="bg-blue-600 p-3 hover:bg-blue-700 text-white font-bold px-5 rounded-full ">
                         <NavLink to={"/checker/0"} className='caret-lime-900' >
-                            Evaluator
+                            EVALUATOR
                         </NavLink>
                     </button>
                 </div>
