@@ -20,6 +20,7 @@ export default function Checker() {
         setMyOrder(order);
     }, []);
 
+
     function finishingFunc() {
         const videoId = videoSrc[counter]._id;
         saveWatchedVideo(videoId);
