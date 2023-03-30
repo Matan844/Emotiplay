@@ -7,7 +7,7 @@ export default function Navbar() {
     const [dropdown, setDropdown] = useState("hidden")
 
     return (
-        <div className="w-full justify-between items-center shadow-md bg-white" >
+        <div className="w-full justify-between items-center shadow-md bg-white mb-3" >
 
             <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded flex justify-between">
                 <a href="http://emotiplay.com/" className="flex items-center">

@@ -34,7 +34,7 @@ const Enter = () => {
 
     const widgetRef = useRef()
     return (
-        <div className="h-5/6 grid tablet:grid-cols-1 desktop:grid-cols-3 p-1">
+        <div className="h-5/6 grid tablet:grid-cols-1 desktop:grid-cols-3 ">
 
             <Lottie className="" animationData={Emotion} loop={true} />
 
