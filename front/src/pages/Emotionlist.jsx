@@ -9,40 +9,43 @@ export default function Emotionlist() {
   const { emotionList } = useContext(Storage);
   console.log(emotionList);
   return (
-    <div className=" w-full">
-      <Lottie className="desktop:h-auto tablet:h-1/2" animationData={Animation} loop={true} />
+    <div className="w-full grid desktop:grid-cols-2 tablet:grid-cols-1-grid-cols-4-grid-rows- place-content-center grid-rows-[32rem]">
 
-      <div className="w-1/2 flex flex-col content-end ">
-        <h3 className=" w-full text-2xl text-center mt-7">
+      <Lottie className="desktop:w-full-order-last h-full"
+        animationData={Animation} loop={true}
+      />
+
+      <div className="h-full flex flex-col justify-evenly desktop:order-first">
+        <h3 className="w-full text-3xl text-center">
           This is the emotions
           <br />
           we are looking for:
         </h3>
 
-        <div className="w-full flex flex-col justify-center">
-          {emotionList?.map((spectrum) =>
-            spectrum?.stock.map((emotion) => {
+        <div className="w-full overflow-y-auto h-96 flex flex-col justify-center p-3 mb-2">
+          {emotionList?.map((spectrum) => {
+            return spectrum?.stock.map((emotion) => {
               if (emotion.need === true) {
                 return (
-                  <p className="text-center p-2">
+                  <p className="text-center p-1 text-xl" key={emotion.title}>
                     {console.log(emotion)}
                     {emotion.title}
                   </p>
                 );
               }
-            })
-          )}
+            });
+          })}
+        </div>
+
+        <div className="w-full flex justify-center pt-2">
+          <NavLink to={"/donor"} style={{ textDecoration: "none" }}
+            className="bg-orange-400 rounded p-3 text-xl">
+            Upload video
+          </NavLink>
         </div>
 
       </div>
-
-      <div className="w-2/5sticky bottom-5 right-5 flex ">
-        <NavLink to={"/donor"} style={{ textDecoration: 'none' }}
-          className="z-40 sticky bottom-5 left-12 bg-orange-400 rounded p-3">
-          Upload video
-        </NavLink>
-      </div>
-
     </div>
+
   )
 }
