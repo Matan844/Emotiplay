@@ -35,7 +35,7 @@ function App() {
 
   return (
     <Storage.Provider value={values}>
-      <div className="w-screen h-screen">
+      <div className="h-screen">
       <Navbar />  
       <Routes>
 

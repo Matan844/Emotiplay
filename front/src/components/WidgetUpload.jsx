@@ -57,7 +57,7 @@ const WidgetUpload = (props) => {
     return (
         <div> {accept == true ? (
             <button
-                className="w-80 rounded-lg p-3 flex flex-row justify-center text-center bg-orange-400 items-center content-start hover:bg-orange-600 "
+                className="w-80 rounded-lg p-3 flex flex-row justify-center text-center bg-orange-400 items-center mb-3 content-start hover:bg-orange-600 "
                 onClick={() => widgetRef.current.open()}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                     width="60" height="60" fill="currentColor"
@@ -69,7 +69,7 @@ const WidgetUpload = (props) => {
             </button>) : (
             <button
                 onClick={() => { alert('you need to accept terms') }}
-                className="w-80 rounded-lg p-3 flex flex-row justify-center text-center bg-stone-400 items-center content-start">
+                className="w-80 rounded-lg p-3 flex flex-row justify-center text-center bg-stone-400 items-center mb-3 content-start">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     width="60" height="60" fill="currentColor"
                     className="bi bi-file-earmark-arrow-up mr-5" viewBox="0 0 16 16">

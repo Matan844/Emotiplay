@@ -5,17 +5,14 @@ import { Storage } from "../App";
 import { useNavigate } from "react-router-dom";
 
 export default function Preview() {
-  const {
-    register,
-    handleSubmit
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
   const { emotionList } = useContext(Storage);
   const videoLink = localStorage.getItem("videoPreview");
 
-  const back =  () => {
-   const publicId = localStorage.getItem('tryupload')
-    axios.post('http://localhost:8639/video/deletefromcloudinaryVideo',{publicId : publicId})
+  const back = () => {
+    const publicId = localStorage.getItem('tryupload')
+    axios.post('http://localhost:8639/video/deletefromcloudinaryVideo', { publicId: publicId })
     navigate("/donor");
     localStorage.removeItem("videoPreview");
   };
@@ -43,25 +40,23 @@ export default function Preview() {
         alert(error.response.data.message);
       });
   }
+
   return (
-    <div className="w-screen h-screen flex justify-center flex-row items-center bg--50">
+    <div className="w-screen h-4/6 grid desktop:grid-cols-2 tablet:grid-cols-1 ">
       {videoLink && (
-        <div className="w-3/5 -ml-32">
-          <video
-            src={videoLink}
-            controls
-            width="100%"
-            height="auto"
-            className="p-3"
-          />
-        </div>
+        <video
+          src={videoLink}
+          controls
+          width="100%"
+          height="auto"
+          className="p-3 place-self-center"
+        />
       )}
 
-      <div className="flex flex-col max-w-xs font-sans ml-11 ">
-        <p className="text-3xl">
+      <div className="w-4/5 place-self-center">
+        <p className="text-2xl">
           {" "}
-          your video is ready now select an emotion and then finish uploading by
-          click on save
+          Your video is ready! Select an emotion and save
         </p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -90,25 +85,21 @@ export default function Preview() {
                       {emotion.title}
                     </option>
                   );
-               }
-               return null   })
+                }
+                return null
+              })
             )}
           </select>
 
           <div className=" mt-5 w-100 d-flex align-items-center">
             <div className="w-75 d-flex justify-content-between align-items-center ">
-              <button
-                onClick={() => back()}
-                className="bg-orange-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-              >
+              <button onClick={() => back()}
+                className="bg-orange-500 hover:bg-red-700 text-white font-bold py-2 px-4  rounded" >
                 Back
               </button>
 
-              <button
-                type="submit"
-                className="bg-blue-500 ml-9 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-              
-              >
+              <button type="submit"
+                className="bg-blue-500 ml-9 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded">
                 Save
               </button>
             </div>

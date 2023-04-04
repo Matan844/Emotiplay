@@ -18,14 +18,13 @@ const VideoPlayer = (props) => {
 
 
     return (
-        <div className='d-flex justify-content-center flex-column align-items-center pt-1'>
+        <div className=''>
             {
                 videoSrc[counter]?.cloudinaryLink &&
                 <video
-                    className='d-flex justify-content-center flex-column align-items-center p-1'
                     onTimeUpdate={handleProgress}
                     ref={videoRef}
-                    width="95%"
+                    width="100%"
                     height="auto"
                     controls
                     autoPlay
@@ -37,9 +36,6 @@ const VideoPlayer = (props) => {
                     />
                 </video>
             }
-            <div className='position-fixed bottom-0 '>
-
-            </div>
         </div>
     )
 }
