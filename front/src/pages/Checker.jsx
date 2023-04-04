@@ -10,7 +10,7 @@ import axios from 'axios';
 export default function Checker() {
     const params = useParams();
     const navigate = useNavigate();
-    const { videoSrc, myOrder, setMyOrder, FilterdVideos, setFilterdVideos } = useContext(Storage)
+    const { videoSrc, setMyOrder, FilterdVideos, setFilterdVideos } = useContext(Storage)
     let videos = [{}]
     const [counter, setCounter] = useState(Number(params.index))
     const [nextPage, setNextPage] = useState(false)
@@ -55,7 +55,6 @@ export default function Checker() {
                     }));
     }
 
-
     const handleRating = () => {
         localStorage.getItem("inappropriate") && inappropriate();
         localStorage.getItem("quality") && localStorage.getItem("option") &&
@@ -84,47 +83,49 @@ export default function Checker() {
 
 
     return (
-        <div className='w-full h-full flex flex-row justify-center bg--50 mt-10'>
-            <div className='w-1/6 flex justify-center items-center'>
-                <button className=' bg-orange-600 rounded p-3 text-white text-xl'
-                    onClick={() => {
-                        navigate('/enter');
-                        localStorage.removeItem("wrongAnswer");
-                        localStorage.removeItem("firstRandom");
-                        localStorage.removeItem("secondRandom");
-                        localStorage.removeItem("correctAnswer");
-                    }} >
-                    EXIT
-                </button>
-            </div>
-
-            <div className='w-3/6 p-8 '>
+        <div className='w-scren h-screen grid grid-cols-1 place-items-center'>
+            <div className='w-11/12 p-3'>
                 {videoSrc[counter]?.cloudinaryLink ? (
-                    <div>  <VideoPlayer counter={counter} setCounter={setCounter} />
+                    <div>
+                        <VideoPlayer counter={counter} setCounter={setCounter} />
                         <Questioning setNextPage={setNextPage} counter={counter} setCounter={setCounter} />
-                    </div>) : (
+                    </div>
+                ) : (
                     <div className='mt-48 text-4xl'>You have rated all the videos at the moment, thank you very much! </div>
 
                 )}
             </div>
-            {nextPage == true ? (
-                <div className='w-1/6 flex justify-center items-center  '>
-                    <a className='object-none  rounded p-3 text-white text-xl bg-blue-600'
-                        href={`/checker/${counter}`}
-                        onClick={() => finishingFunc()}>
-                        NEXT
-                    </a>
+
+            <div className='w-full flex justify-between m'>
+                <div className='w-1/6 flex justify-center items-center m-1 mb-2'> 
+                    <button className=' bg-orange-600 rounded p-3 text-white text-xl'
+                        onClick={() => {
+                            navigate('/enter');
+                            localStorage.removeItem("wrongAnswer");
+                            localStorage.removeItem("firstRandom");
+                            localStorage.removeItem("secondRandom");
+                            localStorage.removeItem("correctAnswer");
+                        }} >
+                        EXIT
+                    </button>
                 </div>
-            ) : (
-                <div className='w-1/6 flex justify-center items-center  '>
-                    <a className='object-none  rounded p-3 text-white text-xl bg-blue-300'>
-                        NEXT
-                    </a>
-                </div>
-            )}
 
-
-
-        </div>
+                {nextPage == true ? (
+                    <div className='w-1/6 flex justify-center items-center m-1 mb-2'> 
+                        <a className='object-none rounded p-3 text-white text-xl bg-blue-600'
+                            href={`/checker/${counter}`}
+                            onClick={() => finishingFunc()}>
+                            NEXT
+                        </a>
+                    </div>
+                ) : (
+                    <div className='w-1/6 flex justify-center items-center m-1 mb-2'> 
+                        <a className='object-none rounded p-3 text-white text-xl bg-blue-300'>
+                            NEXT
+                        </a>
+                    </div>
+                )}
+            </div>
+         </div>
     )
 }

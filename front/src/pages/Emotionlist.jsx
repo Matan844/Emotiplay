@@ -37,7 +37,7 @@ export default function Emotionlist() {
           })}
         </div>
 
-        <div className="w-full flex justify-center pt-2">
+        <div className="w-full flex justify-center pt-2 m-2">
           <NavLink to={"/donor"} style={{ textDecoration: "none" }}
             className="bg-orange-400 rounded p-3 text-xl">
             Upload video

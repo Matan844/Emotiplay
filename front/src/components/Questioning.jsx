@@ -204,13 +204,13 @@ export default function Questioning(props) {
     }
   }
   return (
-    <div className="">
+    <div className="w-full">
       {/* {loading ? "hi" : "ho"} */}
 
-      <div className="flex flex-col items-center p-1 pt-1 text-2xl ">
-        <header className="text-center fs-2 p-2">
+      <div className="flex flex-col items-center p-2 pt-1 text-2xl ">
+        <h3 className="text-center fs-2 p-2">
           Is it an appropriate video?
-        </header>
+        </h3>
 
         <div className="inline-flex p-2">
           <button className={buttonL}
@@ -233,14 +233,14 @@ export default function Questioning(props) {
         </div>
       </div>
 
-      <div className="flex flex-col items-center px-2 ">
+      <div className="flex flex-col items-center px-2 p-1 ">
         <div className="text-center p-1 ">
-          <header className="text-center fs-2 text-2xl p-1">
+          <h3 className="text-center fs-2 text-2xl p-1">
             Rate the video quality
-          </header>
-          <header className="text-center fs-2 text-2xl p-1">
+          </h3>
+          <h3 className="text-center fs-2 text-2xl p-1">
             Regardless of content
-          </header>
+          </h3>
         </div>
 
         <div className="p-2">
@@ -255,12 +255,12 @@ export default function Questioning(props) {
         </div>
       </div>
 
-      <div className="p-1">
-        <header className="text-center fs-2 text-xl p-2">
+      <div className=" flex flex-col items-center p-2">
+        <h3 className="text-center fs-2 text-2xl p-2">
           How does the person feel?
-        </header>
+        </h3>
 
-        <div className="emotion px-2 flex flex-row justify-center">
+        <div className=" flex flex-wrap px-2">
           {buttonsOptions.map((item, index) => (
             <button
               key={index}
