@@ -18,7 +18,7 @@ export default function Checker() {
     useEffect(() => {
         const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
         setMyOrder(order);
-    }, []);
+    }, [setMyOrder]);
 
 
     function finishingFunc() {
@@ -29,9 +29,10 @@ export default function Checker() {
         const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
         setMyOrder(order);
         // console.log(order);
-        setFilterdVideos(FilterdVideos++)
+        setFilterdVideos(prevFilterdVideos => prevFilterdVideos +1)
     }
     const saveWatchedVideo = (videoId) => {
+        console.log(FilterdVideos);
         const userId = localStorage.getItem("id");
         axios
             .post("http://localhost:8639/user/watchedVideoSave", { userId: userId, videoId: videoId })
@@ -47,7 +48,7 @@ export default function Checker() {
                                 const filtered = videos.filter(obj => !viewdvideo.includes(obj._id));
                                 // console.log('filtered videos:', filtered);
                                 localStorage.setItem('filtered', JSON.stringify(filtered));
-                                setFilterdVideos(FilterdVideos++)
+                                setFilterdVideos(prevFilterdVideos => prevFilterdVideos +1)
                             })
                             .catch((error) => {
                                 console.error('Error fetching data:', error);
@@ -110,7 +111,7 @@ export default function Checker() {
                     </button>
                 </div>
 
-                {nextPage == true ? (
+                {nextPage === true ? (
                     <div className='w-1/6 flex justify-center items-center m-1 mb-2'> 
                         <a className='object-none rounded p-3 text-white text-xl bg-blue-600'
                             href={`/checker/${counter}`}
@@ -120,9 +121,9 @@ export default function Checker() {
                     </div>
                 ) : (
                     <div className='w-1/6 flex justify-center items-center m-1 mb-2'> 
-                        <a className='object-none rounded p-3 text-white text-xl bg-blue-300'>
+                        <button className='object-none rounded p-3 text-white text-xl bg-blue-300'>
                             NEXT
-                        </a>
+                        </button>
                     </div>
                 )}
             </div>

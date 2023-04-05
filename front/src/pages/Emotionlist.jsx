@@ -33,7 +33,7 @@ export default function Emotionlist() {
                   </p>
                 );
               }
-            });
+           return null });
           })}
         </div>
 

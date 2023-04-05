@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react"
-import { Storage } from "../App"
+import { useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom";
 
 const WidgetUpload = (props) => {
@@ -9,14 +8,13 @@ const WidgetUpload = (props) => {
     const widgetRef = useRef()
 
     const accept = props.accept
+    const upload =process.env.REACT_APP_UPLOADPRESET
 
-    // console.log('hie' + accept);
-
-    useEffect(() => {
+    useEffect(() => { 
         cloudinaryRef.current = window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: process.env.REACT_APP_CLOUDNAME,
-            uploadPreset: process.env.REACT_APP_UPLOADPRESET,
+            cloudName: 'dsgdoguhb',
+            uploadPreset: upload,
             // process.env.CLOUDINARY_cloudName,
             //  process.env.CLOUDINARY_uploadPreset,
             maxFileSize: 40000000, // 40 MB
@@ -35,7 +33,7 @@ const WidgetUpload = (props) => {
             }
             else {
               const tryupload = result?.info?.url
-              const publicId = tryupload. split('/').slice(-1)[0].split('.')[0]
+              const publicId = tryupload?.split('/').slice(-1)[0].split('.')[0]
                 localStorage.setItem('tryupload' ,  publicId )
                 console.log("cloudinary connected", result?.info?.url);
             }
@@ -52,10 +50,10 @@ const WidgetUpload = (props) => {
                 }
             }
         })
-    }, [])
+    }, [navigate,upload])
 
     return (
-        <div> {accept == true ? (
+        <div> {accept === true ? (
             <button
                 className="w-80 rounded-lg p-3 flex flex-row justify-center text-center bg-orange-400 items-center mb-3 content-start hover:bg-orange-600 "
                 onClick={() => widgetRef.current.open()}>

@@ -7,8 +7,8 @@ const VideoPlayer = (props) => {
     const { videoSrc } = useContext(Storage)
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);
-
     const [counter, setCounter] = useState(Number(params.index));
+    console.log(progress + setCounter);
     const handleProgress = () => {
         const duration = videoRef.current.duration;
         const currentTime = videoRef.current.currentTime;

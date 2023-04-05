@@ -1,4 +1,3 @@
-import { LottiePlayer } from "lottie-react"
 import { useNavigate } from "react-router-dom"
 import Lottie from "lottie-react";
 import Thanks from '../lotty/realThanks.json'
