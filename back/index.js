@@ -26,9 +26,9 @@ mongoose
 
 
 cloudinary.config({
-  cloud_name: 'dsgdoguhb',
-  api_key: '936228414444438',
-  api_secret: 'k5CQqGPMR2HA5PUwegiZQwfp1HM'
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret
 });
 
 
@@ -63,7 +63,6 @@ async function deleteUnusedVideos() {
   }
 }
 const intervalId = setInterval(deleteUnusedVideos, 7 * 24 * 60 * 60 * 1000); // 7 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
-
 const app = express();
 app.use(express.json());
 app.use(cors());
