@@ -15,9 +15,9 @@ const WidgetUpload = (props) => {
     useEffect(() => {
         cloudinaryRef.current = window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: 'dsgdoguhb',
+            cloudName: process.env.REACT_APP_CLOUDNAME,
+            uploadPreset: process.env.REACT_APP_UPLOADPRESET,
             // process.env.CLOUDINARY_cloudName,
-            uploadPreset: 'gbpggwot',
             //  process.env.CLOUDINARY_uploadPreset,
             maxFileSize: 40000000, // 40 MB
             maxVideoFileSize: 40000000, // 40 MB

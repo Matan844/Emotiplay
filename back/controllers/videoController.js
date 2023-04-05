@@ -3,11 +3,13 @@ const Emotion = require('../models/Emotion');
 const { default: mongoose } = require('mongoose');
 const Review = require('../models/Review');
 const cloudinary = require('cloudinary').v2;
+const dotenv = require("dotenv");
 
+dotenv.config();
 cloudinary.config({
-  cloud_name: 'dsgdoguhb',
-  api_key: '936228414444438',
-  api_secret: 'k5CQqGPMR2HA5PUwegiZQwfp1HM'
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret
 });
 
 module.exports.addVideo = async (req, res) => {
