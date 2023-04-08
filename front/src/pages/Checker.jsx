@@ -28,7 +28,6 @@ export default function Checker() {
         setCounter(counter + 1)
         const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
         setMyOrder(order);
-        // console.log(order);
         setFilterdVideos(prevFilterdVideos => prevFilterdVideos +1)
         navigate(`#/checker/${counter}`)
     }
