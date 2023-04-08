@@ -30,7 +30,7 @@ export default function Checker() {
         setMyOrder(order);
         // console.log(order);
         setFilterdVideos(prevFilterdVideos => prevFilterdVideos +1)
-        navigate(`/${counter}`)
+        // navigate(`/${counter}`)
     }
     const saveWatchedVideo = (videoId) => {
         console.log(FilterdVideos);
@@ -115,7 +115,7 @@ export default function Checker() {
                 {nextPage === true ? (
                     <div className='w-1/6 flex justify-center items-center m-1 mb-2'> 
                         <a className='object-none rounded p-3 text-white text-xl bg-blue-600'
-                            href={`/checker/${counter}`}
+                            href={`#/checker/${counter}`}
                             onClick={() => finishingFunc()}>
                             NEXT
                         </a>
