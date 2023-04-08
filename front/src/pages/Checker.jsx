@@ -29,7 +29,7 @@ export default function Checker() {
         const order = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
         setMyOrder(order);
         setFilterdVideos(prevFilterdVideos => prevFilterdVideos +1)
-        navigate(`#/checker/${counter}`)
+        navigate(`#/checker/${counter + 1}`)
     }
     const saveWatchedVideo = (videoId) => {
         console.log(FilterdVideos);
